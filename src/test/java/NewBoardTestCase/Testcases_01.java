@@ -48,7 +48,7 @@ public class Testcases_01 extends Basestep {
 		NewBoardPages newBoardPages = new NewBoardPages();
 		newBoardPages.enterEmail("Usama@gmail.com");
 		newBoardPages.clickSubmit();
-
+		Thread.sleep(3000);
 		// Log completion in the report
 		test.log(Status.PASS, "Login Test Completed Successfully");
 	}
