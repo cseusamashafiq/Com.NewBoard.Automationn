@@ -1,53 +1,43 @@
 package NewBoardTestCase;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.HashMap;
-import org.openqa.selenium.chrome.ChromeOptions;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import NewBoard.Automationn.Basestep;
+import NewBoard.Automationn.LambdaTestDriver;
 import NewBoardPage.NewBoardPages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
+public class LamdaTest extends LambdaTestDriver{
 
-public class LamdaTest {
+	String testCaseName = null;
+	String testCaseDescription = null;  
 
-	@Test(groups = { "Signup Testing", "CompleteRegressionSuite" })
-	public void Login() throws MalformedURLException, InterruptedException {
-
-		ChromeOptions browserOptions = new ChromeOptions();
-		browserOptions.setPlatformName("Windows 10");
-		browserOptions.setBrowserVersion("130");
-		HashMap<String, Object> ltOptions = new HashMap<String, Object>();
-		ltOptions.put("username", "cseusamashafiq");
-		ltOptions.put("accessKey", "YIfnDPSVuRYHz1mLs6Oy0fE19jlDYUlMLEtd7mIXDpa5Ws8QLW");
-		ltOptions.put("visual", true);
-		ltOptions.put("video", true);
-		ltOptions.put("build", "SeleniumBuild");
-		ltOptions.put("project", "SeleniumBuildProject");
-		ltOptions.put("selenium_version", "4.0.0");
-		ltOptions.put("w3c", true);
-		browserOptions.setCapability("LT:Options", ltOptions);
-
-		WebDriver driver = new RemoteWebDriver(new URL("https://hub.lambdatest.com/wd/hub"), browserOptions);
-
-		driver.get("https://my.newboard.io/"); 
-		Thread.sleep(9000);
-
-		driver.findElement(By.xpath("//input[@name = 'email']")).sendKeys("csusamashafiq@gmail.com");
-		driver.findElement(By.xpath("//button[@type = 'submit']")).click();
-
-		driver.quit();		
-
-
-
-
-
-
-
-
+	@BeforeTest(alwaysRun = true)
+	public void beforeMethod() {
+		testCaseName = this.getClass().getName();
+		testCaseDescription = "The purpose of this test case is to verify \"" + testCaseName + "\" workflow.";
+		System.out.println("Test Case: " + testCaseName);
+		System.out.println("Description: " + testCaseDescription);
 	}
+	@Test(groups = { "Login with Valid", "CompleteRegressionSuite" })
+	public void Login() throws MalformedURLException, InterruptedException {
+		// Start the browser first
+		LambdaTestDriver.LambdaBrowser();
+		Thread.sleep(9000); // Wait for the browser to load
+
+		// Then initialize the Page Object
+		NewBoardPages newBoardPages = new NewBoardPages();
+
+		// Use the Page Object methods
+		newBoardPages.enterEmail("csusamashafiq@gmail.com");
+		newBoardPages.clickSubmit();
+	}
+
+	@AfterMethod(alwaysRun = true)
+	public void afterTest() {
+		LambdaTestDriver.BrowserClose();
+	}
+
 }

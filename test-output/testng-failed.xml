@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="NewBoardTestCase.SauceLab">
+      <class name="NewBoardTestCase.TC_133">
         <methods>
-          <include name="Login"/>
+          <include name="afterTest"/>
+          <include name="newBoardLogin"/>
+          <include name="beforeMethod"/>
         </methods>
-      </class> <!-- NewBoardTestCase.SauceLab -->
+      </class> <!-- NewBoardTestCase.TC_133 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

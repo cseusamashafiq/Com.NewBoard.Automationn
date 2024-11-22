@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="AutomationSuite">
+    <test name="AutomationTest">
+        <classes>
+            <class name="NewBoardTestCase.Email_testing" />
+            <!-- Add more classes if needed -->
+        </classes>
+    </test>
+</suite>

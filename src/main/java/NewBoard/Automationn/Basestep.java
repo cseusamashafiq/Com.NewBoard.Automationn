@@ -14,14 +14,14 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.time.Duration;
 
-public class Basestep extends WebdriverSession {
+public class Basestep  extends LambdaTestDriver {
 
 	// Take a screenshot and save it to the specified location
 	public static void screencapture() {
-		if (webdriver != null) {
+		if (driver != null) {
 			// Capture the current date and time to make the filename unique
 			String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-			File screenshot = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
+			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
 			try {
 				// Save the screenshot with a unique filename
@@ -38,9 +38,9 @@ public class Basestep extends WebdriverSession {
 
 	// Wait until the page load is complete
 	public static void waitForPageLoad() {
-		webdriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		if (webdriver != null) {
-			WebDriverWait wait = new WebDriverWait(webdriver, Duration.ofSeconds(360));
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		if (driver != null) {
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(360));
 		} else {
 			System.out.println("Webdriver not initialized, cannot wait for page load.");
 		}
